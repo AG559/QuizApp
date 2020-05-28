@@ -3,7 +3,7 @@ package com.ag.quizapp.ViewModels;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ag.quizapp.Helpers.FirebaseRepository;
+import com.ag.quizapp.Databases.FirebaseRepository;
 import com.ag.quizapp.Models.QuizListModel;
 
 import java.util.List;
@@ -11,13 +11,13 @@ import java.util.List;
 public class QuizListViewModel extends ViewModel implements FirebaseRepository.MyFireStoreTaskComplete {
 
     private MutableLiveData<List<QuizListModel>> quizListModelData = new MutableLiveData<>();
-    private FirebaseRepository firebaseRepository = new FirebaseRepository(this);
 
     public MutableLiveData<List<QuizListModel>> getQuizListModelData() {
         return quizListModelData;
     }
 
     public QuizListViewModel() {
+        FirebaseRepository firebaseRepository = new FirebaseRepository(this);
         firebaseRepository.getQuizData();
     }
 

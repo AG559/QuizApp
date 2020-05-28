@@ -6,11 +6,14 @@ public class QuizListModel {
 
     @DocumentId
     private String quiz_id;
-    private String name,image,level,desc,visibility;
+    private String name, image, level, desc, visibility;
     private Long questions;
+
 
     public QuizListModel() {
     }
+
+
 
     public QuizListModel(String quiz_id, String name, String image, String level, String desc, String visibility, Long questions) {
         this.quiz_id = quiz_id;

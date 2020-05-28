@@ -1,12 +1,12 @@
-package com.ag.quizapp.Helpers;
+package com.ag.quizapp.Databases;
 
 import androidx.annotation.NonNull;
 
 import com.ag.quizapp.Models.QuizListModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class FirebaseRepository {
     private MyFireStoreTaskComplete myFireStoreTaskComplete;
 
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private CollectionReference quizRef = firebaseFirestore.collection("quizlists");
+    private Query quizRef = firebaseFirestore.collection("quizlists").whereEqualTo("visibility", "public");
 
     public FirebaseRepository(MyFireStoreTaskComplete myFireStoreTaskComplete) {
         this.myFireStoreTaskComplete = myFireStoreTaskComplete;

@@ -31,6 +31,8 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     private TextView detail_title, detail_desc, detail_difficulty, detail_total_quest, detail_your_score;
     private int position;
     private Button startQuizBtn;
+    private String quizId;
+    private long questions;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -46,6 +48,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         position = getArguments().getInt("position");
+
         navController = Navigation.findNavController(view);
 
         //Initialization Ui Element
@@ -76,6 +79,8 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
                 detail_desc.setText(quizListModelList.get(position).getDesc());
                 detail_difficulty.setText(quizListModelList.get(position).getLevel());
                 detail_total_quest.setText(quizListModelList.get(position).getQuestions() + "");
+                quizId = quizListModelList.get(position).getQuiz_id();
+                questions = quizListModelList.get(position).getQuestions();
             }
         });
     }
@@ -85,7 +90,8 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.detail_start_btn:
                 DetailFragmentDirections.ActionDetailFragmentToQuizFragment action = DetailFragmentDirections.actionDetailFragmentToQuizFragment();
-                action.setPosition(position);
+                action.setQuizId(quizId);
+                action.setQuestions(questions);
                 navController.navigate(action);
         }
     }
